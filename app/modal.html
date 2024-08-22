@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="{{{appclient}}}"></script>
+    <title>Translated Transcript</title>
+  </head>
+  <body>
+    <main>
+      <section>
+        <picture>
+          <img
+            src="http://placeholder.pics/svg/200/D6FFAA-7CFFD8/5728FF-B3B3B3/ticket_top_navigation"
+            alt="ticket top navigation"
+          />
+        </picture>
+      </section>
+    </main>
+  </body>
+  <script defer>
+    (async function init() {
+      let client;
+
+      client = await app.initialized();
+
+      client.events.on("app.activated", async () => {
+        const context = await client.instance.context();
+
+        try {
+          await client.interface.trigger("showModal", {
+            title: "cxconnect.ai",
+            template: "./test.html",
+          });
+        } catch (error) {
+          console.error("Error opening cxconnect.ai modal", error);
+        }
+      });
+    })();
+  </script>
+</html>
